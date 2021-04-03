@@ -1,0 +1,51 @@
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+.RandomScreen {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 150px;
+}
+.player-1 {
+  position: fixed;
+  left: 0;
+  top: 130px;
+  width: 15%;
+
+}
+.player-2 {
+  position: fixed;
+  right: 0;
+  top: 130px;
+  width: 15%;
+}
+
+.SelectedPlayer {
+  max-width: 90%;
+}
+
+.ChooseButton {
+  height: 100px;
+  width: 100%;
+  background: #E3C519;
+  cursor: pointer;
+  font-size: 32px;
+  position: fixed;
+  left: 0;
+  top: 0;
+}
+.ChooseButton:hover {
+  background-color: #C1950E;
+}

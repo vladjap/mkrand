@@ -1,0 +1,17 @@
+.PlayersList {
+  display: flex;
+  flex-wrap: wrap;
+  max-width: 55%;
+}
+.PlayersList .PlayerItem {
+  max-width: 100px;
+}
+
+.PlayersList .PlayerItem img {
+  width: 100%;
+}
+
+.PlayersList .PlayerItem:hover {
+  background-color: #bcbcbc;
+  cursor: pointer;
+}
