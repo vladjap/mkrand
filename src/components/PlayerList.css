@@ -2,6 +2,9 @@
   display: flex;
   flex-wrap: wrap;
   max-width: 55%;
+  background-color: rgb(128 128 128 / 68%);
+  display: flex;
+  justify-content: center;
 }
 .PlayersList .PlayerItem {
   max-width: 100px;
@@ -15,3 +18,12 @@
   background-color: #bcbcbc;
   cursor: pointer;
 }
+
+@media only screen and (max-width: 800px) {
+  .PlayersList {
+    max-width: 100%;
+    z-index: 1;
+    background: gray;
+  }
+}
+

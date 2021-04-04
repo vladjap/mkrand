@@ -5,6 +5,7 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-color: #5e5eab;
 }
 
 code {
@@ -16,13 +17,14 @@ code {
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-top: 150px;
+  margin-top: 100px;
 }
 .player-1 {
   position: fixed;
   left: 0;
   top: 130px;
   width: 15%;
+  color: white;
 
 }
 .player-2 {
@@ -30,6 +32,7 @@ code {
   right: 0;
   top: 130px;
   width: 15%;
+  color: white;
 }
 
 .SelectedPlayer {
@@ -45,7 +48,25 @@ code {
   position: fixed;
   left: 0;
   top: 0;
+  z-index: 2;
 }
 .ChooseButton:hover {
   background-color: #C1950E;
+}
+
+@media only screen and (max-width: 800px) {
+  .RandomScreen {
+    margin-top: 600px;
+  }
+  .player-1 {
+    width: 50%;
+
+  }
+  .player-2 {
+    width: 50%;
+  }
+}
+
+.App {
+  background-size: cover !important;
 }
