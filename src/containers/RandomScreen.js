@@ -14,7 +14,7 @@ const RandomScreen = ({ player1, player2 }) => {
             </div>}
             {!player1 && <img className='SelectedPlayer' src={questionMark} alt='empty' />}
         </div>
-        <PlayersList />
+        <PlayersList player1={player1} player2={player2} />
         <div className='player-2'>
             Player 2
             {player2?.name && <div>{player2.name}</div>}

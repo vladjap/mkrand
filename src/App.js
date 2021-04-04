@@ -1,32 +1,62 @@
-import React, {useState} from "react";
+import React, { useState, useEffect } from "react";
 import './App.css';
 import RandomScreen from "./containers/RandomScreen";
 import { getRandomPlayer, getPlayerById } from './utils.js';
-
-import BackgroundImage from './assets/background.jpeg';
 
 function App() {
     const [player1, setPlayer1] = useState(null);
     const [player2, setPlayer2] = useState(null);
 
+    const [player1Last, setPlayer1Last] = useState(null);
+    const [player2Last, setPlayer2Last] = useState(null);
+
+    const [playersChoosed, setPlayersChoosed] = useState(false);
+
+    useEffect(() => {
+        if (playersChoosed) {
+
+            let newPlayer1 = player1;
+            let newPlayer2 = player2;
+
+            while(newPlayer1 === player1Last) {
+                console.log("ISTI JE BORAC KAO PROSLI p1")
+                newPlayer1 = getRandomPlayer();
+            }
+            while(newPlayer1 === player1Last) {
+                console.log("ISTI JE BORAC KAO PROSLI p2")
+                newPlayer1 = getRandomPlayer();
+            }
+            if (newPlayer1 !== player1) {
+                setPlayer1(newPlayer1);
+            }
+            if (newPlayer2 !== player2) {
+                setPlayer2(newPlayer2);
+            }
+
+        }
+
+    }, [playersChoosed, player1, player2, player1Last, player2Last]);
+
     return (
         <div className="App">
             <button className='ChooseButton' onClick={() => {
-                let newPlayer1 = getRandomPlayer();
-                let newPlayer2 = getRandomPlayer();
-
-                while(newPlayer1 === player1) {
-                    newPlayer1 = getRandomPlayer();
-                }
-                while(newPlayer2 === player2) {
-                    newPlayer2 = getRandomPlayer();
-                }
-
-                setPlayer1(newPlayer1);
-                setPlayer2(newPlayer2);
+                setPlayersChoosed(false);
                 window.scrollTo({ top: 0, behavior: 'smooth' });
+
+                const intervalVal = setInterval(() => {
+                    setPlayer1(getRandomPlayer());
+                    setPlayer2(getRandomPlayer());
+                }, 100);
+
+                setTimeout(() => {
+                    clearInterval(intervalVal);
+                    setPlayer1Last(player1);
+                    setPlayer2Last(player2);
+                    setPlayersChoosed(true);
+                }, 2000);
+
             }} >
-                Roll the Dice!
+                Choose Kombatants
             </button>
 
             <RandomScreen

@@ -2,12 +2,17 @@
   display: flex;
   flex-wrap: wrap;
   max-width: 55%;
-  background: rgb(193 149 14 / 69%);
-  display: flex;
+  padding-top: 30px;
+  background: #0000007d;
   justify-content: center;
 }
 .PlayersList .PlayerItem {
   max-width: 100px;
+  border-radius: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 5px;
 }
 
 .PlayersList .PlayerItem img {
@@ -15,14 +20,27 @@
 }
 
 .PlayersList .PlayerItem:hover {
-  background-color: #bcbcbc;
+  background-color: #e3c51929;
   cursor: pointer;
+}
+
+.player-1-active {
+  background: #0000ff40;
+}
+
+.player-2-active {
+  background: #ff000036;
+}
+
+.player-1-active.player-2-active {
+  background: linear-gradient(to right, #0000ff40 50%, #ff000036 50%);
 }
 
 @media only screen and (max-width: 800px) {
   .PlayersList {
     max-width: 100%;
     z-index: 1;
+    background: url('../assets/bckgrnd.png');
 
   }
 }
