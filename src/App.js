@@ -10,7 +10,7 @@ function App() {
     const [player2, setPlayer2] = useState(null);
 
     return (
-        <div className="App" style={{background: `url(${BackgroundImage})`}}>
+        <div className="App">
             <button className='ChooseButton' onClick={() => {
                 let newPlayer1 = getRandomPlayer();
                 let newPlayer2 = getRandomPlayer();
@@ -26,7 +26,7 @@ function App() {
                 setPlayer2(newPlayer2);
                 window.scrollTo({ top: 0, behavior: 'smooth' });
             }} >
-                BIRAJ!
+                Roll the Dice!
             </button>
 
             <RandomScreen

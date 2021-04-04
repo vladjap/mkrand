@@ -5,7 +5,8 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-color: #5e5eab;
+  background: url('./assets/background.jpeg');
+  background-size: contain;
 }
 
 code {
@@ -37,6 +38,7 @@ code {
 
 .SelectedPlayer {
   max-width: 90%;
+  margin-top: 15px;
 }
 
 .ChooseButton {
@@ -67,6 +69,3 @@ code {
   }
 }
 
-.App {
-  background-size: cover !important;
-}

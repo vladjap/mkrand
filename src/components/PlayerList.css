@@ -2,7 +2,7 @@
   display: flex;
   flex-wrap: wrap;
   max-width: 55%;
-  background-color: rgb(128 128 128 / 68%);
+  background: rgb(193 149 14 / 69%);
   display: flex;
   justify-content: center;
 }
@@ -23,7 +23,7 @@
   .PlayersList {
     max-width: 100%;
     z-index: 1;
-    background: gray;
+
   }
 }
 
