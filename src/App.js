@@ -11,6 +11,7 @@ function App() {
     const [player2Last, setPlayer2Last] = useState(null);
 
     const [playersChoosed, setPlayersChoosed] = useState(false);
+    const [loading, setLoading] = useState(false);
 
     useEffect(() => {
         if (playersChoosed) {
@@ -32,15 +33,18 @@ function App() {
             if (newPlayer2 !== player2) {
                 setPlayer2(newPlayer2);
             }
-
+            setLoading(false);
         }
 
     }, [playersChoosed, player1, player2, player1Last, player2Last]);
 
     return (
         <div className="App">
-            <button className='ChooseButton' onClick={() => {
+            <button
+                className={`ChooseButton grad1 ${loading ? 'loading' : ''}`}
+                onClick={() => {
                 setPlayersChoosed(false);
+                setLoading(true);
                 window.scrollTo({ top: 0, behavior: 'smooth' });
 
                 const intervalVal = setInterval(() => {
@@ -55,8 +59,11 @@ function App() {
                     setPlayersChoosed(true);
                 }, 2000);
 
-            }} >
-                Choose Kombatants
+                }}
+                disabled={loading}
+            >
+                {!loading && 'Choose Kombatants'}
+                {loading && 'Loading'}
             </button>
 
             <RandomScreen
