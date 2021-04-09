@@ -4,8 +4,8 @@ import RandomScreen from "./containers/RandomScreen";
 import { getRandomPlayer, getPlayerById } from './utils.js';
 
 function App() {
-    const [player1, setPlayer1] = useState('shts');
-    const [player2, setPlayer2] = useState('shts');
+    const [player1, setPlayer1] = useState(null);
+    const [player2, setPlayer2] = useState(null);
 
     const [player1Last, setPlayer1Last] = useState(null);
     const [player2Last, setPlayer2Last] = useState(null);
