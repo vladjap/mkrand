@@ -1,3 +1,5 @@
+import { joystick } from '../utils';
+
 import ShangTsungImage from '../assets/ShangTsung.png';
 import ShaoKahn from '../assets/ShaoKahn.png';
 import Frost from '../assets/Frost.png';
@@ -32,19 +34,56 @@ import Kollector from '../assets/Kollector.png';
 import Sindel from '../assets/Sindel.png';
 import Cetrion from '../assets/Cetrion.png';
 import Fujin from '../assets/Fujin.png';
+import Rambo from '../assets/rambo.png';
+
+
+const {
+    BTN_CIRCLE,
+    BTN_CROSS,
+    BTN_DOWN,
+    BTN_L1,
+    BTN_L2,
+    BTN_LEFT,
+    BTN_R1,
+    BTN_R2,
+    BTN_RIGHT,
+    BTN_SQUARE,
+    BTN_TRIANGLE,
+    BTN_UP,
+} = joystick;
 
 export const PlayersData = [
     {
         id: 'shts',
         name: 'Shang Tsung',
         image: ShangTsungImage,
-        available: false,
+        available: true,
+        kombos: [
+            {
+                name: 'test',
+                moveList: [BTN_CROSS, BTN_LEFT, BTN_SQUARE, BTN_TRIANGLE],
+            },
+            {
+                name: 'test',
+                moveList: [BTN_CIRCLE, BTN_DOWN, BTN_UP, BTN_TRIANGLE],
+            },
+        ],
+        specials: [
+            {
+                name: 'test',
+                moveList: [BTN_CROSS, BTN_LEFT, BTN_SQUARE, BTN_TRIANGLE],
+            },
+            {
+                name: 'test',
+                moveList: [BTN_CIRCLE, BTN_DOWN, BTN_UP, BTN_TRIANGLE],
+            },
+        ],
     },
     {
         id: 'shka',
         name: 'Shao Kahn',
         image: ShaoKahn,
-        available: false,
+        available: true,
     },
     {
         id: 'frst',
@@ -56,13 +95,13 @@ export const PlayersData = [
         id: 'niwo',
         name: 'Night Wolf',
         image: NightWolf,
-        available: false,
+        available: true,
     },
     {
         id: 'jkr',
         name: 'Joker',
         image: Joker,
-        available: false,
+        available: true,
     },
     {
         id: 'jhca',
@@ -92,7 +131,7 @@ export const PlayersData = [
         id: 'spw',
         name: 'Spawn',
         image: Spawn,
-        available: false,
+        available: true,
     },
     {
         id: 'scrp',
@@ -203,10 +242,16 @@ export const PlayersData = [
         available: false,
     },
     {
+        id: 'rmbo',
+        name: 'Rambo',
+        image: Rambo,
+        available: true,
+    },
+    {
         id: 'trmnt',
         name: 'Terminator',
         image: Terminator,
-        available: false,
+        available: true,
     },
     {
         id: 'grs',
@@ -224,7 +269,7 @@ export const PlayersData = [
         id: 'sndl',
         name: 'Sindel',
         image: Sindel,
-        available: false,
+        available: true,
     },
     {
         id: 'ctrn',
