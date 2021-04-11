@@ -27,7 +27,6 @@ const {
 } = joystick;
 
 const JoystickButton = ({ type }) => {
-    console.log(type, 'typetypetype');
     let buttonImage = null
     if (type === BTN_CIRCLE) { // krug
         buttonImage = circleButton;
