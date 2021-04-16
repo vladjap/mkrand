@@ -6,7 +6,6 @@ import questionMark from '../assets/qm.png'
 
 const RandomScreen = ({ player1, player2 }) => {
 
-    // console.log(player1, 'player1');
     return <div className='RandomScreen'>
         <div className='player-1'>
             Player 1:
