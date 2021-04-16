@@ -1,11 +1,18 @@
 import React, { useState, useEffect } from "react";
+import { isEqual } from 'lodash';
+import socketIOClient from "socket.io-client";
 import './App.css';
 import RandomScreen from "./containers/RandomScreen";
 import { getRandomPlayer, getPlayerById } from './utils.js';
 
+// const ENDPOINT = "http://127.0.0.1:3000"; // https://mkrand-api.herokuapp.com/
+const ENDPOINT = "https://mkrand-api.herokuapp.com";
+const socket = socketIOClient(ENDPOINT);
+
+
 function App() {
-    const [player1, setPlayer1] = useState(null);
-    const [player2, setPlayer2] = useState(null);
+    const [player1, setPlayer1] = useState('shts');
+    const [player2, setPlayer2] = useState('shts');
 
     const [player1Last, setPlayer1Last] = useState(null);
     const [player2Last, setPlayer2Last] = useState(null);
@@ -13,55 +20,118 @@ function App() {
     const [playersChoosed, setPlayersChoosed] = useState(false);
     const [loading, setLoading] = useState(false);
 
+    const [response, setResponse] = useState("");
+
+    const [sentRandEvent, setSentRandEvent] = useState(false);
+    const [isSocketRandHandled, setIsSocketRandHandled] = useState(false);
+    const [isRandomRunning, setIsRandomRunning] = useState(false);
+    const [intervalVal, setIntervalVal] = useState(null);
+    const [randomPlayerFromOther, setRandomPlayerFromOther] = useState(null);
+
+    // console.log('da');
+    // let socket = null;
+
+        // socket.on('random running', function(msg) {
+    //     console.log(msg, 'msg');
+    // });
+
+
+
     useEffect(() => {
-        if (playersChoosed) {
+        if (!isSocketRandHandled) {
+            // socket.on('chat message', function(msg) {
+            //     console.log(msg, 'msg');
+            // });
+            socket.on('random running', function(msg) {
+                console.log(msg, 'msg running');
+                if (msg) {
+                    setIsRandomRunning(true);
+                    setIntervalVal(setInterval(() => {
+                        setPlayer1(getRandomPlayer());
+                        setPlayer2(getRandomPlayer());
+                    }, 100));
+                } else {
+                    setIsRandomRunning(false);
+                }
+            });
+            socket.on('random players', function(msg) {
+                console.log(msg, 'random player choosed');
+                setRandomPlayerFromOther(msg);
+                // setPlayer1(msg?.player1);
+                // setPlayer2(msg?.player2);
+                // socket.emit('random running');
+            });
 
-            let newPlayer1 = player1;
-            let newPlayer2 = player2;
-
-            while(newPlayer1 === player1Last) {
-                newPlayer1 = getRandomPlayer();
-            }
-            while(newPlayer1 === player1Last) {
-                newPlayer1 = getRandomPlayer();
-            }
-            if (newPlayer1 !== player1) {
-                setPlayer1(newPlayer1);
-            }
-            if (newPlayer2 !== player2) {
-                setPlayer2(newPlayer2);
-            }
-            setLoading(false);
+            setIsSocketRandHandled(true);
         }
 
-    }, [playersChoosed, player1, player2, player1Last, player2Last]);
+        if (!isRandomRunning) {
+            clearInterval(intervalVal);
+            setPlayer1(randomPlayerFromOther?.player1);
+            setPlayer2(randomPlayerFromOther?.player2);
+        }
+
+
+        // if (playersChoosed) {
+        //
+        //     let newPlayer1 = player1;
+        //     let newPlayer2 = player2;
+        //
+        //     while(newPlayer1 === player1Last) {
+        //         newPlayer1 = getRandomPlayer();
+        //     }
+        //     while(newPlayer2 === player2Last) {
+        //         newPlayer2 = getRandomPlayer();
+        //     }
+        //     console.log('koliko puta')
+        //     if (newPlayer1 !== player1) {
+        //         setPlayer1(newPlayer1);
+        //     }
+        //     if (newPlayer2 !== player2) {
+        //         setPlayer2(newPlayer2);
+        //     }
+        //     if (!isEqual({ player1, player2 }, randomPlayerFromOther)) {
+        //         socket.emit('random players', { player1, player2 });
+        //     }
+        //
+        //     setLoading(false);
+        // }
+
+    }, [playersChoosed, player1, player2, player1Last, player2Last, intervalVal]);
 
     return (
         <div className="App">
             <button
-                className={`ChooseButton grad1 ${loading ? 'loading' : ''}`}
+                className={`ChooseButton grad1 ${isRandomRunning ? 'loading' : ''}`}
                 onClick={() => {
-                setPlayersChoosed(false);
-                setLoading(true);
-                window.scrollTo({ top: 0, behavior: 'smooth' });
+                    console.log('clicked;');
+                    console.log('socket', socket);
+                    if (socket){
+                        socket.emit('random running', true);
+                    }
 
-                const intervalVal = setInterval(() => {
-                    setPlayer1(getRandomPlayer());
-                    setPlayer2(getRandomPlayer());
-                }, 100);
+                    // setPlayersChoosed(false);
+                    // setLoading(true);
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
 
-                setTimeout(() => {
-                    clearInterval(intervalVal);
-                    setPlayer1Last(player1);
-                    setPlayer2Last(player2);
-                    setPlayersChoosed(true);
-                }, 2000);
+
+                    // setTimeout(() => {
+                    //
+                    //     setPlayer1Last(player1);
+                    //     setPlayer2Last(player2);
+                    //     setPlayersChoosed(true);
+                    //     setSentRandEvent(false);
+                    //     console.log('to to to ');
+                    //     if (socket) {
+                    //         socket.emit('random running', false);
+                    //     }
+                    // }, 2000);
 
                 }}
-                disabled={loading}
+                disabled={isRandomRunning}
             >
-                {!loading && 'Choose Kombatants'}
-                {loading && 'Loading'}
+                {!isRandomRunning && 'Choose Kombatants'}
+                {isRandomRunning && 'Loading'}
             </button>
 
             <RandomScreen
