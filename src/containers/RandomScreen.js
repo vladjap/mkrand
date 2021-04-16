@@ -15,7 +15,7 @@ const RandomScreen = ({ player1, player2 }) => {
             </div>}
             {player1?.kombos && <span>Kombos:</span>}
             {player1?.kombos && player1?.kombos.map( kombo => {
-                return <div className='buttons-list-wrapper'>
+                return <div key={`${kombo?.name}-p1`} className='buttons-list-wrapper'>
                     <span>{kombo?.name}</span>
                     {kombo && kombo?.moveList?.map(move => <span className='button-move'>
                         <JoystickButton type={move} />
@@ -24,7 +24,7 @@ const RandomScreen = ({ player1, player2 }) => {
             })}
             {player1?.specials && <span>Special:</span>}
             {player1?.specials && player1?.specials.map( special => {
-                return <div className='buttons-list-wrapper'>
+                return <div key={`${special?.name}-p1`} className='buttons-list-wrapper'>
                     <span>{special?.name}</span>
                     {special && special?.moveList?.map(move => <span className='button-move'>
                         <JoystickButton type={move} />
@@ -42,7 +42,7 @@ const RandomScreen = ({ player1, player2 }) => {
             </div>}
             {player1?.kombos && <span>Kombos:</span>}
             {player2?.kombos && player2?.kombos.map( kombo => {
-                return <div className='buttons-list-wrapper'>
+                return <div key={`${kombo?.name}-p2`} className='buttons-list-wrapper'>
                     <span>{kombo?.name}</span>
                     {kombo && kombo?.moveList?.map(move => <span className='button-move'>
                         <JoystickButton type={move} />
@@ -51,7 +51,7 @@ const RandomScreen = ({ player1, player2 }) => {
             })}
             {player2?.kombos && <span>Special:</span>}
             {player2?.specials && player2?.specials.map( special => {
-                return <div className='buttons-list-wrapper'>
+                return <div key={`${special?.name}-p2`} className='buttons-list-wrapper'>
                     <span>{special?.name}</span>
                     {special && special?.moveList?.map(move => <span className='button-move'>
                         <JoystickButton type={move} />
