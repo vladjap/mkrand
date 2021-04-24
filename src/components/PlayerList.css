@@ -42,6 +42,9 @@
 .player-1-active, .player-1-active.was-player-1 {
   background: #0000ff40;
 }
+.player-2-active, .player-2-active.was-player-2 {
+  background: #ff000036;
+}
 
 .was-player-1:not(.player-1-active) {
   background: rgb(101 119 255 / 25%);
@@ -66,7 +69,7 @@
   background: linear-gradient(to right, #0000ff40 50%, rgb(255 121 121 / 25%) 50%);
 }
 .player-2-active.was-player-2.was-player-1 {
-  background: linear-gradient(to right, #0000ff40 50%, rgb(255 121 121 / 25%) 50%);
+  background: linear-gradient(to right, rgb(101 119 255 / 25%) 50%, #ff000036 50%);
 }
 
 
