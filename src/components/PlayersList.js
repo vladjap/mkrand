@@ -30,6 +30,8 @@ const PlayersList = ({ player1, player2, historyPlayer1, historyPlayer2, resetPl
                 img={player?.image}
                 isPlayer1={player1?.id === player?.id}
                 isPlayer2={player2?.id === player?.id}
+                wasPlayer1={historyPlayer1.includes(player?.id)}
+                wasPlayer2={historyPlayer2.includes(player?.id)}
             />)}
         </div>
     </div>

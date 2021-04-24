@@ -21,12 +21,13 @@
   justify-content: center;
 }
 .PlayersList .PlayerItem {
-  max-width: 100px;
+  max-width: 96px;
   border-radius: 5px;
   display: flex;
   justify-content: center;
   align-items: center;
   padding: 5px;
+  margin: 4px;
 }
 
 .PlayersList .PlayerItem img {
@@ -38,17 +39,37 @@
   cursor: pointer;
 }
 
-.player-1-active {
+.player-1-active, .player-1-active.was-player-1 {
   background: #0000ff40;
 }
 
-.player-2-active {
+.was-player-1:not(.player-1-active) {
+  background: rgb(101 119 255 / 25%);
+}
+.was-player-2:not(.player-2-active) {
+  background: rgb(255 121 121 / 25%);
+}
+
+.player-2-active, .player-2-active.was-player-2 {
   background: #ff000036;
 }
 
 .player-1-active.player-2-active {
   background: linear-gradient(to right, #0000ff40 50%, #ff000036 50%);
 }
+
+.was-player-1.was-player-2 {
+  background: linear-gradient(to right, rgb(101 119 255 / 25%) 50%, rgb(255 121 121 / 25%) 50%);
+}
+
+.player-1-active.was-player-1.was-player-2 {
+  background: linear-gradient(to right, #0000ff40 50%, rgb(255 121 121 / 25%) 50%);
+}
+.player-2-active.was-player-2.was-player-1 {
+  background: linear-gradient(to right, #0000ff40 50%, rgb(255 121 121 / 25%) 50%);
+}
+
+
 
 @media only screen and (max-width: 800px) {
   .PlayersList {
