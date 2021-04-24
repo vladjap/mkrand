@@ -5,8 +5,8 @@ import './App.css';
 import RandomScreen from "./containers/RandomScreen";
 import { getRandomPlayer, getPlayerById } from './utils.js';
 
-// const ENDPOINT = "http://127.0.0.1:3000"; // https://mkrand-api.herokuapp.com/
-const ENDPOINT = "https://mkrand-api.herokuapp.com";
+const ENDPOINT = "http://127.0.0.1:3000"; // https://mkrand-api.herokuapp.com/
+// const ENDPOINT = "https://mkrand-api.herokuapp.com";
 const socket = socketIOClient(ENDPOINT);
 
 
@@ -28,13 +28,19 @@ function App() {
     const [intervalVal, setIntervalVal] = useState(null);
     const [randomPlayerFromOther, setRandomPlayerFromOther] = useState(null);
 
+    const [historyPlayer1, setHistoryPlayer1] = useState([]);
+    const [historyPlayer2, setHistoryPlayer2] = useState([]);
+    const [resetPlayers, setResetPlayers] = useState(false);
+
     // console.log('da');
     // let socket = null;
 
         // socket.on('random running', function(msg) {
     //     console.log(msg, 'msg');
     // });
-
+    console.log(historyPlayer1, 'historyPlayer1');
+    console.log(historyPlayer2, 'historyPlayer2');
+    console.log(resetPlayers, 'resetPlayers');
 
 
     useEffect(() => {
@@ -56,7 +62,10 @@ function App() {
             });
             socket.on('random players', function(msg) {
                 console.log(msg, 'random player choosed');
-                setRandomPlayerFromOther(msg);
+                setRandomPlayerFromOther(msg?.randomData);
+                setHistoryPlayer1(msg?.historyPlayer1);
+                setHistoryPlayer2(msg?.historyPlayer2);
+                setResetPlayers(msg?.resetPlayers);
                 // setPlayer1(msg?.player1);
                 // setPlayer2(msg?.player2);
                 // socket.emit('random running');
@@ -137,6 +146,9 @@ function App() {
             <RandomScreen
                 player1={getPlayerById(player1)}
                 player2={getPlayerById(player2)}
+                historyPlayer1={historyPlayer1}
+                historyPlayer2={historyPlayer2}
+                resetPlayers={resetPlayers}
             />
         </div>
     );

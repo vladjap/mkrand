@@ -4,7 +4,7 @@ import JoystickButton from "../components/Joystick/JoystickButton";
 
 import questionMark from '../assets/qm.png'
 
-const RandomScreen = ({ player1, player2 }) => {
+const RandomScreen = ({ player1, player2, historyPlayer1, historyPlayer2, resetPlayers }) => {
 
     return <div className='RandomScreen'>
         <div className='player-1'>
@@ -33,7 +33,13 @@ const RandomScreen = ({ player1, player2 }) => {
             })}
             {!player1 && <img className='SelectedPlayer' src={questionMark} alt='empty' />}
         </div>
-        <PlayersList player1={player1} player2={player2} />
+        <PlayersList
+            player1={player1}
+            player2={player2}
+            historyPlayer1={historyPlayer1}
+            historyPlayer2={historyPlayer2}
+            resetPlayers={resetPlayers}
+        />
         <div className='player-2'>
             Player 2
             {player2?.name && <div>{player2.name}</div>}

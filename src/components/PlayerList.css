@@ -1,7 +1,21 @@
+
+.PlayersListWrapper {
+  max-width: 54%;
+  position: relative;
+}
+.HistoryButton {
+  height: 20px;
+  position: absolute;
+  top: -20px;
+  left: calc(50% - 60px);
+  background: white;
+  width: 100px;
+  padding: 10px;
+  border-radius: 10px;
+}
 .PlayersList {
   display: flex;
   flex-wrap: wrap;
-  max-width: 54%;
   padding-top: 30px;
   background: #0000007d;
   justify-content: center;
@@ -38,9 +52,11 @@
 
 @media only screen and (max-width: 800px) {
   .PlayersList {
-    max-width: 100%;
-    z-index: 1;
     background: url('../assets/bckgrnd.png');
 
+  }
+  .PlayersListWrapper {
+    z-index: 1;
+    max-width: 100%;
   }
 }

@@ -60,21 +60,21 @@ export const PlayersData = [
         available: true,
         kombos: [
             {
-                name: 'test',
+                name: 'test-1',
                 moveList: [BTN_CROSS, BTN_LEFT, BTN_SQUARE, BTN_TRIANGLE],
             },
             {
-                name: 'test',
+                name: 'test-2',
                 moveList: [BTN_CIRCLE, BTN_DOWN, BTN_UP, BTN_TRIANGLE],
             },
         ],
         specials: [
             {
-                name: 'test',
+                name: 'test-3',
                 moveList: [BTN_CROSS, BTN_LEFT, BTN_SQUARE, BTN_TRIANGLE],
             },
             {
-                name: 'test',
+                name: 'test-4',
                 moveList: [BTN_CIRCLE, BTN_DOWN, BTN_UP, BTN_TRIANGLE],
             },
         ],
