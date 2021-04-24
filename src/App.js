@@ -5,8 +5,8 @@ import './App.css';
 import RandomScreen from "./containers/RandomScreen";
 import { getRandomPlayer, getPlayerById } from './utils.js';
 
-const ENDPOINT = "http://127.0.0.1:3000"; // https://mkrand-api.herokuapp.com/
-// const ENDPOINT = "https://mkrand-api.herokuapp.com";
+// const ENDPOINT = "http://127.0.0.1:3000"; // https://mkrand-api.herokuapp.com/
+const ENDPOINT = "https://mkrand-api.herokuapp.com";
 const socket = socketIOClient(ENDPOINT);
 
 
