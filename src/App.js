@@ -8,6 +8,7 @@ import { getRandomPlayer, getPlayerById } from './utils.js';
 // const ENDPOINT = "http://127.0.0.1:3000"; // https://mkrand-api.herokuapp.com/
 const ENDPOINT = "https://mkrand-api.herokuapp.com";
 const socket = socketIOClient(ENDPOINT);
+console.log(ENDPOINT, 'ENDPOINT');
 
 
 function App() {
