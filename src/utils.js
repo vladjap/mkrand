@@ -31,3 +31,5 @@ export const joystick = {
     BTN_L1: 'BTN_L1',
     BTN_L2: 'BTN_L2',
 };
+
+export const IS_LOCALHOST = window.location.hostname === "localhost" || window.location.hostname === "127.0.0.1";

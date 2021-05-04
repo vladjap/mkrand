@@ -47,17 +47,10 @@ function Rand() {
     // socket.on('random running', function(msg) {
     //     console.log(msg, 'msg');
     // });
-    console.log(historyPlayer1, 'historyPlayer1');
-    console.log(historyPlayer2, 'historyPlayer2');
-    console.log(resetPlayers, 'resetPlayers');
-
-    console.log(roomData, 'roomData');
-    console.log(roomName, 'roomName');
 
     useEffect(() => {
         if (!isRandomRunning) {
             if (intervalVal) {
-                console.log(intervalVal, 'intervalVal');
                 clearInterval(intervalVal);
                 setPlayer1(randomPlayerFromOther?.player1);
                 setPlayer2(randomPlayerFromOther?.player2);
@@ -74,7 +67,6 @@ function Rand() {
                 name: roomName,
             });
             socket.on('random running', function(msg) {
-                console.log(msg, 'msg running');
                 if (msg?.status) {
                     setIsRandomRunning(true);
                     setIntervalVal(setInterval(() => {
@@ -86,7 +78,6 @@ function Rand() {
                 }
             });
             socket.on('random players', function(msg) {
-                console.log(msg, 'random player choosed');
                 setRandomPlayerFromOther(msg?.randomData);
                 // setHistoryPlayer1(msg?.historyPlayer1);
                 // setHistoryPlayer2(msg?.historyPlayer2);
@@ -102,7 +93,6 @@ function Rand() {
             });
 
             socket.on('roomsChanged', function(data) {
-                console.log('changes FE rooms', data);
                 setHistoryPlayer1(data?.historyP1);
                 setHistoryPlayer2(data?.historyP2);
                 setIsRandomRunning(false);
@@ -117,7 +107,6 @@ function Rand() {
 
             async function fetchData() {
                 const response = await axios.get(`${API_URL}${GET_ROOM_DATA_ENDPOINT}${roomName}`);
-                console.log(response, 'response');
                 // setRoomData(response?.data);
                 const historyP1 = response?.data?.historyP1;
                 const historyP2 = response?.data?.historyP2;
@@ -125,7 +114,6 @@ function Rand() {
                 const lastP2 = last(historyP2);
                 setPlayer1(lastP1);
                 setPlayer2(lastP2);
-                console.log(lastP2, lastP1, 'last ps');
                 // setRandomPlayerFromOther({
                 //     player1: lastP1,
                 //     player2: lastP2,
@@ -168,14 +156,11 @@ function Rand() {
 
     }, [playersChoosed, player1, player2, player1Last, player2Last, intervalVal]);
 
-    console.log(player1, player2, '<-1-2');
     return (
         <div className="App">
             <button
                 className={`ChooseButton grad1 ${isRandomRunning ? 'loading' : ''}`}
                 onClick={() => {
-                    console.log('clicked;');
-                    console.log('socket', socket);
                     if (socket){
                         socket.emit('random running', {
                             status: true,
