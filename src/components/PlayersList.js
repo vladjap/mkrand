@@ -14,10 +14,10 @@ const PlayersList = ({ player1, player2, historyPlayer1, historyPlayer2, resetPl
         }}>HISTORY</span>
         {resetPlayers && <div className='players-reseted'>Players Reseted</div>}
         <div className={`players-history  ${isHistoryOpen ? 'open' : ''}`}>
-            {historyPlayer1.length === 0 && <div className='players-history-item'>History is empty</div>}
-            {historyPlayer1.map((player1Item, key) => {
+            {historyPlayer1?.length === 0 && <div className='players-history-item'>History is empty</div>}
+            {historyPlayer1?.map((player1Item, key) => {
                 const player1ItemHistory = getPlayerById(player1Item);
-                const player2ItemHistory = getPlayerById(historyPlayer2[key]);
+                const player2ItemHistory = historyPlayer2 ? getPlayerById(historyPlayer2[key]) : null;
                 return <div className='players-history-item'>
                     {key + 1}. {player1ItemHistory?.name} VS {player2ItemHistory?.name}
                 </div>
@@ -30,8 +30,8 @@ const PlayersList = ({ player1, player2, historyPlayer1, historyPlayer2, resetPl
                 img={player?.image}
                 isPlayer1={player1?.id === player?.id}
                 isPlayer2={player2?.id === player?.id}
-                wasPlayer1={historyPlayer1.includes(player?.id)}
-                wasPlayer2={historyPlayer2.includes(player?.id)}
+                wasPlayer1={historyPlayer1?.includes(player?.id)}
+                wasPlayer2={historyPlayer2?.includes(player?.id)}
             />)}
         </div>
     </div>
