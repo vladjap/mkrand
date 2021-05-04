@@ -35,6 +35,8 @@ import Sindel from '../assets/Sindel.png';
 import Cetrion from '../assets/Cetrion.png';
 import Fujin from '../assets/Fujin.png';
 import Rambo from '../assets/rambo.png';
+import Rain from '../assets/rain.png';
+import Milena from '../assets/milena.png';
 
 
 const {
@@ -283,4 +285,17 @@ export const PlayersData = [
         image: Fujin,
         available: false,
     },
+    {
+        id: 'mln',
+        name: 'Milena',
+        image: Milena,
+        available: true,
+    },
+    {
+        id: 'rain',
+        name: 'Rain',
+        image: Rain,
+        available: true,
+    },
+
 ];
